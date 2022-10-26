@@ -1,0 +1,76 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+    background-color: #f3f3f3;
+    height: 100vh;
+    padding: 2rem;
+}
+.logo_image{
+    width: 40px;
+    height: 40px;
+}
+
+.inner_page_heading{
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.transfer_amount{
+    background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+
+.request_loan{
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+.form__btn{
+    border: none;
+    border-radius: 0.7rem;
+    font-size: 1.8rem;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close_amount{
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}    
+.movements_in_the_account  {
+height: 54%;
+width: 100%;
+overflow-y: auto;
+overflow-x: hidden;
+}
+.debited_movement{
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+}
+.credited_movment{
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+}
+.date_movement{
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #666;
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+}   
+.exact_amount{
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #666;
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+}
