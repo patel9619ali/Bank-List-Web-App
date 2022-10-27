@@ -1,7 +1,7 @@
 const account1 = {
     owner: 'Patel Mohammed Ali',
     movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-    interestRate: 1.2, // %
+    interestRate: 1.2, 
     pin: 1111,
   };
   
@@ -25,14 +25,32 @@ const account1 = {
     interestRate: 1,
     pin: 4444,
   };
+  const account5 = {
+    owner: 'Mohammed Azeem Siddique',
+    movements: [460, 1300, 710, 560, 930],
+    interestRate: 1,
+    pin: 5555,
+  };
   
-const account = [account1,account2,account3,account4];
-console.log(account);
-
+const account = [account1,account2,account3,account4,account5];
+let username = function(accountName){
+    let mapAccount = accountName.owner.toLowerCase().split(' ').map(function(initials){
+        return initials[0];
+    });
+   let usernameOfAccount = mapAccount.join('');
+   accountName.username = usernameOfAccount;
+   console.log(accountName)
+}
+account.forEach(function(allAccount){
+    username(allAccount);
+});
 
 let requestLoanInput = document.querySelector('.request_loan_input');
 let formButtonLoan = document.querySelector('.form__btn--loan');
-console.log(formButtonLoan)
+let loginButton = document.querySelector('.login_botton');
+let userNameValue = document.querySelector('.user_name_value');
+let userPinValue = document.querySelector('.user_pin_value');
+let appDisplay = document.querySelector('.app_display_wrapper');
 let movement = [];
 const today = new Date();
 const year = today.getFullYear();
@@ -67,5 +85,27 @@ let loanInput = function(){
 }
 
 
+// let loginUsername = function(){
+//     for (let i = 0; i < account.length; i++) {
+//         const element = account[i];
+//         if((element.username === userNameValue.value) && (element.pin == userPinValue.value)){
+//             appDisplay.classList.remove('d-none');
+//             appDisplay.classList.add('d-block');
+//         }
+//         else{
+//             alert('Please Enter valid Id');
+//         }
+//     }  
+// }
+// let loginUsername = function(){
+//         if((account.username === userNameValue.value) && (element.pin == userPinValue.value)){
+//             appDisplay.classList.remove('d-none');
+//             appDisplay.classList.add('d-block');
+//         }
+//         else{
+//             alert('Please Enter valid Id');
+//         }
+// }
 
 formButtonLoan.addEventListener('click',loanInput);
+loginButton.addEventListener('click',loginUsername);
