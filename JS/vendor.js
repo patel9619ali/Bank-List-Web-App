@@ -39,7 +39,7 @@ let username = function(accountName){
   });
  let usernameOfAccount = mapAccount.join('');
  accountName.username = usernameOfAccount;
- console.log(accountName)
+//  console.log(accountName);
 }
 account.forEach(function(allAccount){
   username(allAccount);
@@ -51,6 +51,12 @@ let loginButton = document.querySelector('.login_botton');
 let userNameValue = document.querySelector('.user_name_value');
 let userPinValue = document.querySelector('.user_pin_value');
 let appDisplay = document.querySelector('.app_display_wrapper');
+// SignUp Button
+let signUpButton = document.querySelector('.signup_botton');
+let createFullName = document.querySelector('.create_full_name');
+let createUserName = document.querySelector('.create_user_name');
+let createPin = document.querySelector('.create_your_pin');
+let confirmPin = document.querySelector('.confirm_pin');
 let movement = [];
 const today = new Date();
 const year = today.getFullYear();
@@ -58,7 +64,7 @@ let month = today.getMonth() + 1;
 let day = today.getDate();
 const formattedToday = day + '/' + month + '/' + year;
 let movementsInTheAccount = document.querySelector('.movements_in_the_account');
-console.log(movementsInTheAccount);
+console.log(account);
 let displayAccountInfo = function(movement){
   movement.forEach((amount,i) => {
       const type = amount>0 ? 'Deposited' : `Withdrawed`;
@@ -100,15 +106,32 @@ let loginUsername = function(){
     } 
        
 }
-// let loginUsername = function(){
-//         if((account.username === userNameValue.value) && (element.pin == userPinValue.value)){
-//             appDisplay.classList.remove('d-none');
-//             appDisplay.classList.add('d-block');
-//         }
-//         else{
-//             alert('Please Enter valid Id');
-//         }
-// }
+console.log(account.length)
+let signUpNewUser = function(){
+  let fullNameValue = createFullName.value;
+  let createUserNameValue = createUserName.value;
+  let createPinValue = createPin.value;
+  let confirmPinValue = confirmPin.value;
+  if((fullNameValue === '') || (createUserNameValue === '') || (createPinValue === '') || (confirmPinValue === '')){
+    alert("It Cant Be empty");
+  }
+  else if((createPinValue !== confirmPinValue)){
+    alert('Both should be Same');
+  }
+  else{
+    let createUserAccFun = function(newAccount){
+      newAccount = {};
+      newAccount.owner = fullNameValue;
+      newAccount.username = createUserNameValue;
+      newAccount.pin = createPinValue;
+      account.push(newAccount);
+    }
+    createUserAccFun(`account${account.length+1}`);
+    
+  }
+}
+
 
 formButtonLoan.addEventListener('click',loanInput);
 loginButton.addEventListener('click',loginUsername);
+signUpButton.addEventListener('click',signUpNewUser);
