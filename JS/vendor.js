@@ -39,7 +39,6 @@ let username = function(accountName){
   });
  let usernameOfAccount = mapAccount.join('');
  accountName.username = usernameOfAccount;
-//  console.log(accountName);
 }
 account.forEach(function(allAccount){
   username(allAccount);
@@ -57,6 +56,9 @@ let createFullName = document.querySelector('.create_full_name');
 let createUserName = document.querySelector('.create_user_name');
 let createPin = document.querySelector('.create_your_pin');
 let confirmPin = document.querySelector('.confirm_pin');
+let signUpWrapper = document.querySelector('.sign_up_wrapper');
+let currentAmount = document.querySelector('.amount_have');
+let accountHistory = document.querySelector('.account_history');
 let movement = [];
 const today = new Date();
 const year = today.getFullYear();
@@ -66,28 +68,32 @@ const formattedToday = day + '/' + month + '/' + year;
 let movementsInTheAccount = document.querySelector('.movements_in_the_account');
 console.log(account);
 let displayAccountInfo = function(movement){
-  movement.forEach((amount,i) => {
-      const type = amount>0 ? 'Deposited' : `Withdrawed`;
+      const type = (movement.slice(-1))>0 ? 'Credited' : `Debited`;
           let html = `
           <div class="row movements">
                           <div class="col-md-4 col-6">
-                              <p class="amount_movement credited_movment">${i+1} ${type}</p>
+                              <p class="amount_movement credited_movment">${movement.length} ${type}</p>
                           </div>
                           <div class="col-md-4 col-6">
                               <p class="date_movement">${formattedToday}</p>
                           </div>
                           <div class="col-md-4 col-12">
-                              <p class="exact_amount">$${Math.abs(amount)}</p>
+                              <p class="exact_amount">$${Math.abs(movement.slice(-1))}</p>
                           </div>
                       </div>
                       `;
           movementsInTheAccount.insertAdjacentHTML('afterbegin', `${html}`);
-  });
+          // if(type === "Credited"){
+          //   movement.reduce(amount);
+          // }
+          // else if(type === "Debited"){
+          //   console.log(type)
+          // }
 }
 
 let loanInput = function(){
   movement.push(requestLoanInput.value);
-  displayAccountInfo(movement.slice(-1));
+  displayAccountInfo(movement);
 }
 
 
@@ -97,6 +103,7 @@ let loginUsername = function(){
         const element = account[i];
         if((element.username === userNameValue.value) && (element.pin == userPinValue.value)){
             appDisplay.classList.remove('d-none');
+            signUpWrapper.classList.add('d-none');
             appDisplay.classList.add('d-block');
             found = true;
         }
@@ -125,13 +132,19 @@ let signUpNewUser = function(){
       newAccount.username = createUserNameValue;
       newAccount.pin = createPinValue;
       account.push(newAccount);
+      
     }
     createUserAccFun(`account${account.length+1}`);
-    
+    appDisplay.classList.remove('d-none');
+    signUpWrapper.classList.add('d-none');
+    appDisplay.classList.add('d-block');
   }
 }
 
-
+console.log(currentAmount.innerHTML);
 formButtonLoan.addEventListener('click',loanInput);
 loginButton.addEventListener('click',loginUsername);
 signUpButton.addEventListener('click',signUpNewUser);
+accountHistory.addEventListener('click',function(){
+    
+});
