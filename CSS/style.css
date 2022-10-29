@@ -74,3 +74,13 @@ overflow-x: hidden;
     text-align: center;
     margin: 0;
 }
+.getClass{
+    display: none;
+}
+/* .account_history:hover > .getClass{
+   display: block;
+   background-color: green;
+} */
+.account_history:hover + .getClass {
+    display: block;
+}
