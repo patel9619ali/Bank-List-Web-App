@@ -59,6 +59,13 @@ let confirmPin = document.querySelector('.confirm_pin');
 let signUpWrapper = document.querySelector('.sign_up_wrapper');
 let currentAmount = document.querySelector('.amount_have');
 let accountHistory = document.querySelector('.account_history');
+let historyButton = document.querySelector('.history_button');
+let mainAccountHistory = document.querySelector('.account_history_main');
+let debiteInfo = document.querySelector('.debiteInfo');
+let creditInfo = document.querySelector('.creditInfo');
+let withDrawMoney = document.querySelector('.withdraw_money_input');
+let withDrawSubmit = document.querySelector('.form__btn--withdraw');
+let currentBalance = document.querySelector('.amount_have');
 let movement = [];
 const today = new Date();
 const year = today.getFullYear();
@@ -66,34 +73,62 @@ let month = today.getMonth() + 1;
 let day = today.getDate();
 const formattedToday = day + '/' + month + '/' + year;
 let movementsInTheAccount = document.querySelector('.movements_in_the_account');
-console.log(account);
 let displayAccountInfo = function(movement){
-      const type = (movement.slice(-1))>0 ? 'Credited' : `Debited`;
-          let html = `
-          <div class="row movements">
-                          <div class="col-md-4 col-6">
-                              <p class="amount_movement credited_movment">${movement.length} ${type}</p>
-                          </div>
-                          <div class="col-md-4 col-6">
-                              <p class="date_movement">${formattedToday}</p>
-                          </div>
-                          <div class="col-md-4 col-12">
-                              <p class="exact_amount">$${Math.abs(movement.slice(-1))}</p>
-                          </div>
-                      </div>
-                      `;
-          movementsInTheAccount.insertAdjacentHTML('afterbegin', `${html}`);
-          // if(type === "Credited"){
-          //   movement.reduce(amount);
-          // }
-          // else if(type === "Debited"){
-          //   console.log(type)
-          // }
-}
+  let found1 = false;
+      let balance = movement.reduce(function(accum,currentValue,i){
+        if(accum >= 0){
+          found1 = true;
+          console.log(found1)
+          return accum + Number(currentValue);  
+        }
+        if(!found1){
+          console.log(!found1)
+          alert(`Withdrawal Money Should Not be Gretear Than Current Balance`);
+          return accum;
+        }
+        console.log(!found1)
+      });
+      if (Number(balance) >= 0) {
+        currentBalance.innerHTML = `$${balance}`;
+        const type = (movement.slice(-1))>0 ? 'Credited' : `Debited`;
+            let html = `
+            <div class="row movements">
+                            <div class="col-md-4 col-6">
+                                <p class="amount_movement credited_movment">${movement.length} ${type}</p>
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <p class="date_movement">${formattedToday}</p>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <p class="exact_amount">$${Math.abs(movement.slice(-1))}</p>
+                            </div>
+                        </div>
+                        `;
+            movementsInTheAccount.insertAdjacentHTML('afterbegin', `${html}`);
+            if(type === "Credited"){
+              creditInfo.insertAdjacentHTML('afterbegin', `${html}`);
+            }
+            else if(type === "Debited"){
+              debiteInfo.insertAdjacentHTML('afterbegin', `${html}`);
+            }
+          }
+        }
+        
 
 let loanInput = function(){
-  movement.push(requestLoanInput.value);
-  displayAccountInfo(movement);
+  let requestValue = Number(requestLoanInput.value);
+  if(requestValue > 0){
+    movement.push(requestValue);
+    displayAccountInfo(movement);
+  }
+}
+
+let witdrawRequest = function(){
+  let withdrawValue = Number(withDrawMoney.value);
+  if (withdrawValue > 0) {
+    movement.push(`-${withdrawValue}`);
+    displayAccountInfo(movement);
+  }
 }
 
 
@@ -103,6 +138,7 @@ let loginUsername = function(){
         const element = account[i];
         if((element.username === userNameValue.value) && (element.pin == userPinValue.value)){
             appDisplay.classList.remove('d-none');
+            mainAccountHistory.classList.remove('d-none');
             signUpWrapper.classList.add('d-none');
             appDisplay.classList.add('d-block');
             found = true;
@@ -136,15 +172,18 @@ let signUpNewUser = function(){
     }
     createUserAccFun(`account${account.length+1}`);
     appDisplay.classList.remove('d-none');
+    mainAccountHistory.classList.remove('d-none');
     signUpWrapper.classList.add('d-none');
     appDisplay.classList.add('d-block');
   }
+}
+let accountInfo = function(){
+  historyButton.classList.toggle("getClass");
 }
 
 console.log(currentAmount.innerHTML);
 formButtonLoan.addEventListener('click',loanInput);
 loginButton.addEventListener('click',loginUsername);
 signUpButton.addEventListener('click',signUpNewUser);
-accountHistory.addEventListener('click',function(){
-    
-});
+accountHistory.addEventListener('click',accountInfo);
+withDrawSubmit.addEventListener('click',witdrawRequest);
