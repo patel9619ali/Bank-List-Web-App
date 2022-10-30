@@ -81,6 +81,6 @@ overflow-x: hidden;
    display: block;
    background-color: green;
 } */
-.account_history:hover + .getClass {
+/* .account_history:hover + .getClass {
     display: block;
-}
+} */
