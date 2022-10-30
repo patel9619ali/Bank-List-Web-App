@@ -37,6 +37,24 @@
             </div>
         </div>
     </section>
+    
+    <section class="account_history_main d-none">
+        <button class="account_history">Account History</button>
+        <div class="history_button getClass">
+            <nav>
+                <div class="nav nav-tabs history_button" id="nav-tab" role="tablist">
+                    <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">Debited History</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Credited History</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade debiteInfo" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"></div>
+                <div class="tab-pane fade creditInfo" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"></div>
+            </div>
+          </div>
+    </section>
+
+
 
     <section class="p-5 text-center sign_up_wrapper">
         <h2>Have a Account? If not Open It By Signing Up.</h2>
@@ -95,10 +113,20 @@
                         <h3 class="inner_page_heading">Request loan</h3>
                         <div class="input-group mb-3 d-flex align-items-center justify-content-center">
                             <div class="request_loan me-3">
-                                <input type="text" class="request_loan_input form-control" placeholder="Amount" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="request_loan_input form-control" placeholder="Amount" aria-label="Loan Money" aria-describedby="basic-addon1">
                                 <p class="mt-2 text-center">Amount</p>
                             </div>
                             <button class="form__btn form__btn--loan ms-3">→</button>
+                        </div>
+                    </div>
+                    <div class="withdraw_money mb-3 p-2">
+                        <h3 class="inner_page_heading">Withdraw Money</h3>
+                        <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+                            <div class="request_loan me-3">
+                                <input type="text" class="withdraw_money_input form-control" placeholder="Amount" aria-label="Withdraw Money" aria-describedby="basic-addon1">
+                                <p class="mt-2 text-center">Amount</p>
+                            </div>
+                            <button class="form__btn form__btn--withdraw ms-3">→</button>
                         </div>
                     </div>
                     <div class="close_amount p-2">
@@ -120,19 +148,7 @@
         </div>
     </main>
 
-    <section class="account_history d-block">
-        <nav>
-            <button class="account_history">Account History</button>
-            <div class="nav nav-tabs getClass" id="nav-tab" role="tablist">
-              <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">Debited History</button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Credited History</button>
-            </div>
-        </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">D</div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">C</div>
-          </div>
-    </section>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
