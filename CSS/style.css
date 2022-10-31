@@ -36,12 +36,12 @@ body{
 }
 
 .close_amount{
-    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+    background-image: linear-gradient(to top left, #050a68, #58dbff);
 }    
 .movements_in_the_account  {
-height: 54%;
+height: 650px;
 width: 100%;
-overflow-y: auto;
+overflow-y: scroll;
 overflow-x: hidden;
 }
 .debited_movement{
@@ -77,10 +77,6 @@ overflow-x: hidden;
 .getClass{
     display: none;
 }
-/* .account_history:hover > .getClass{
-   display: block;
-   background-color: green;
-} */
-/* .account_history:hover + .getClass {
-    display: block;
-} */
+.withdraw_money{
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
