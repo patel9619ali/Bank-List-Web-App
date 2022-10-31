@@ -87,12 +87,18 @@
                     <p>As of <span class="date_time">Tuesday, 10/25/2022, 12:56:25 PM</span></p>
                 </div>
                 <div class="col-md-6 col-12 text-center">
-                    <h3 class="amount_have">$0</h3>
+                    <h3 class="amount_have">₹0</h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-12">
                     <div class="movements_in_the_account"></div>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm converting_money">
+                        <option selected>Convert Your Money</option>
+                        <option value="inr-riyal">Saudi Riyal</option>
+                        <option value="inr-dollar">United States Dollar</option>
+                        <option value="inr-euro">Euro</option>
+                    </select>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="transfer_amount mb-3 p-2">
@@ -122,7 +128,7 @@
                     <div class="withdraw_money mb-3 p-2">
                         <h3 class="inner_page_heading">Withdraw Money</h3>
                         <div class="input-group mb-3 d-flex align-items-center justify-content-center">
-                            <div class="request_loan me-3">
+                            <div class="me-3">
                                 <input type="text" class="withdraw_money_input form-control" placeholder="Amount" aria-label="Withdraw Money" aria-describedby="basic-addon1">
                                 <p class="mt-2 text-center">Amount</p>
                             </div>
@@ -143,10 +149,12 @@
                             <button class="form__btn form__btn--loan ms-3">→</button>
                         </div>   
                     </div>
+                    <p class="demo"></p>
                 </div>
             </div>
         </div>
     </main>
+    
 
 
     <!-- Optional JavaScript; choose one of the two! -->
