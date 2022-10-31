@@ -66,6 +66,7 @@ let creditInfo = document.querySelector('.creditInfo');
 let withDrawMoney = document.querySelector('.withdraw_money_input');
 let withDrawSubmit = document.querySelector('.form__btn--withdraw');
 let currentBalance = document.querySelector('.amount_have');
+let convertingMoney = document.querySelectorAll('.converting_money');
 let movement = [];
 const today = new Date();
 const year = today.getFullYear();
@@ -78,7 +79,7 @@ let displayAccountInfo = function(movement){
           return accum + Number(currentValue);  
       });
       if (Number(balance) >= 0) {
-        currentBalance.innerHTML = `$${balance}`;
+        currentBalance.innerHTML = `₹${balance}`;
         const type = (movement.slice(-1))>0 ? 'Credited' : `Debited`;
             let html = `
             <div class="row movements">
@@ -89,7 +90,7 @@ let displayAccountInfo = function(movement){
                                 <p class="date_movement">${formattedToday}</p>
                             </div>
                             <div class="col-md-4 col-12">
-                                <p class="exact_amount">$${Math.abs(movement.slice(-1))}</p>
+                                <p class="exact_amount">₹${Math.abs(movement.slice(-1))}</p>
                             </div>
                         </div>
                         `;
@@ -101,6 +102,17 @@ let displayAccountInfo = function(movement){
               debitInfo.insertAdjacentHTML('afterbegin', `${html}`);
             }
           }
+          let filterVar = movement.filter(function(element){
+            return element > 0;
+          });
+          let mapVar = filterVar.map(function(element){
+            return element * 22.3;
+          });
+          let reduceVar = mapVar.reduce(function(acc,curr){
+            return acc+curr;
+          });
+          console.log(reduceVar);
+          document.querySelector('.demo').innerHTML = reduceVar;
         }
         
 
