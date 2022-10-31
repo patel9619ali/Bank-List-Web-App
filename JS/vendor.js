@@ -61,7 +61,7 @@ let currentAmount = document.querySelector('.amount_have');
 let accountHistory = document.querySelector('.account_history');
 let historyButton = document.querySelector('.history_button');
 let mainAccountHistory = document.querySelector('.account_history_main');
-let debiteInfo = document.querySelector('.debiteInfo');
+let debitInfo = document.querySelector('.debitInfo');
 let creditInfo = document.querySelector('.creditInfo');
 let withDrawMoney = document.querySelector('.withdraw_money_input');
 let withDrawSubmit = document.querySelector('.form__btn--withdraw');
@@ -74,19 +74,8 @@ let day = today.getDate();
 const formattedToday = day + '/' + month + '/' + year;
 let movementsInTheAccount = document.querySelector('.movements_in_the_account');
 let displayAccountInfo = function(movement){
-  let found1 = false;
       let balance = movement.reduce(function(accum,currentValue,i){
-        if(accum >= 0){
-          found1 = true;
-          console.log(found1)
           return accum + Number(currentValue);  
-        }
-        if(!found1){
-          console.log(!found1)
-          alert(`Withdrawal Money Should Not be Gretear Than Current Balance`);
-          return accum;
-        }
-        console.log(!found1)
       });
       if (Number(balance) >= 0) {
         currentBalance.innerHTML = `$${balance}`;
@@ -109,7 +98,7 @@ let displayAccountInfo = function(movement){
               creditInfo.insertAdjacentHTML('afterbegin', `${html}`);
             }
             else if(type === "Debited"){
-              debiteInfo.insertAdjacentHTML('afterbegin', `${html}`);
+              debitInfo.insertAdjacentHTML('afterbegin', `${html}`);
             }
           }
         }
@@ -123,11 +112,15 @@ let loanInput = function(){
   }
 }
 
-let witdrawRequest = function(){
+let withdrawRequest = function(){
   let withdrawValue = Number(withDrawMoney.value);
-  if (withdrawValue > 0) {
+  if (withdrawValue > 0 && Number(currentBalance.innerHTML.slice(1)) >= withdrawValue) {
     movement.push(`-${withdrawValue}`);
+    console.log(movement)
     displayAccountInfo(movement);
+  }
+  else{
+    alert(`You Don't have a Sufficient Balance`)
   }
 }
 
@@ -186,4 +179,4 @@ formButtonLoan.addEventListener('click',loanInput);
 loginButton.addEventListener('click',loginUsername);
 signUpButton.addEventListener('click',signUpNewUser);
 accountHistory.addEventListener('click',accountInfo);
-withDrawSubmit.addEventListener('click',witdrawRequest);
+withDrawSubmit.addEventListener('click',withdrawRequest);
