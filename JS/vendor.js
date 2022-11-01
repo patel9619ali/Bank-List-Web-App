@@ -32,6 +32,12 @@ const account5 = {
   pin: 5555,
 };
 
+const conversion = {
+  inrRiyal : 0.045,
+  inrDollar: 0.012,
+  inrEuro : 0.018, 
+}
+
 const account = [account1,account2,account3,account4,account5];
 let username = function(accountName){
   let mapAccount = accountName.owner.toLowerCase().split(' ').map(function(initials){
@@ -66,7 +72,8 @@ let creditInfo = document.querySelector('.creditInfo');
 let withDrawMoney = document.querySelector('.withdraw_money_input');
 let withDrawSubmit = document.querySelector('.form__btn--withdraw');
 let currentBalance = document.querySelector('.amount_have');
-let convertingMoney = document.querySelectorAll('.converting_money');
+let convertingMoney = document.querySelectorAll('.currency_value');
+
 let movement = [];
 const today = new Date();
 const year = today.getFullYear();
@@ -102,34 +109,57 @@ let displayAccountInfo = function(movement){
               debitInfo.insertAdjacentHTML('afterbegin', `${html}`);
             }
           }
-          let filterVar = movement.filter(function(element){
-            return element > 0;
-          });
-          let mapVar = filterVar.map(function(element){
-            return element * 22.3;
-          });
-          let reduceVar = mapVar.reduce(function(acc,curr){
-            return acc+curr;
-          });
-          console.log(reduceVar);
-          document.querySelector('.demo').innerHTML = reduceVar;
         }
         
+        let currenyConvertor = function(valueOfMoneyMovement){
+          console.log(valueOfMoneyMovement);
+          console.log(convertingMoney);
+          convertingMoney.forEach(function(valueOfMoney){
+            console.log(valueOfMoney);
+            valueOfMoney.addEventListener('click',function(){
+              if(valueOfMoney.value === `inrRiyal`){
+                let riyalMoney = valueOfMoneyMovement.map(element => element * conversion[valueOfMoney.value]).reduce((acc,curr) => acc+curr);
+                currentAmount.innerHTML = `﷼${riyalMoney}`;
+                console.log(riyalMoney);
+                console.log(valueOfMoneyMovement);
+                console.log(currentAmount);
+              }
+              else if(valueOfMoney.value === `inrDollar`){
+                let dollarMoney = valueOfMoneyMovement.map(element => element * conversion[valueOfMoney.value]).reduce((acc,curr) => acc+curr);
+                currentAmount.innerHTML = `$${dollarMoney}`;
+                console.log(dollarMoney);
+                console.log(currentAmount);
+              }
+              else if(valueOfMoney.value === `inrEuro`){
+                let euroMoney = valueOfMoneyMovement.map(element => element * conversion[valueOfMoney.value]).reduce((acc,curr) => acc+curr);
+                currentAmount.innerHTML = ` €${euroMoney}`;
+              }
+              else if(valueOfMoney.value === `indianRupees`){
+                let indianRupees = valueOfMoneyMovement.reduce((acc,curr) => acc + Number(curr));
+                currentAmount.innerHTML = `₹${indianRupees}`;
+              }
+            })
+          })
+        }
 
+         
 let loanInput = function(){
   let requestValue = Number(requestLoanInput.value);
   if(requestValue > 0){
     movement.push(requestValue);
     displayAccountInfo(movement);
+    currenyConvertor(movement);
   }
+  requestLoanInput.value = '';  
 }
 
 let withdrawRequest = function(){
   let withdrawValue = Number(withDrawMoney.value);
   if (withdrawValue > 0 && Number(currentBalance.innerHTML.slice(1)) >= withdrawValue) {
     movement.push(`-${withdrawValue}`);
-    console.log(movement)
     displayAccountInfo(movement);
+    currenyConvertor(movement);
+    withDrawMoney.value = '';
   }
   else{
     alert(`You Don't have a Sufficient Balance`)
