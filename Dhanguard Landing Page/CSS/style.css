@@ -1,0 +1,22 @@
+@media (min-width: 991px){
+    .desk_sticky_form {
+        position: fixed;
+        top: 125px;
+        right: 125px;
+    }
+    .custom_req_box {
+        max-width: 340px;
+    }
+}
+.custom_req_box {
+    background: #fff;
+    padding: 30px 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 2px rgb(195 186 186);
+}
+.banner_text_wrapper .banner_text {
+    color: #fff;
+    font-size: 34px;
+    margin-bottom: 18px;
+    font-family: 'Montserrat Bold';
+}
