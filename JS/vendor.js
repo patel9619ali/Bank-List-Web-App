@@ -1,26 +1,45 @@
 const account1 = {
   owner: 'Patel Mohammed Ali',
+<<<<<<< HEAD
   interestRate: 1.2, 
   pin: 1111,
   movement: [123,-123,31,21313,-132]
+=======
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, 
+  pin: 1111,
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 };
 
 const account2 = {
   owner: 'Mohammed Saif Patel',
+<<<<<<< HEAD
   interestRate: 1.5,
   pin: 2222,
   movement: [123,13,-3,-213,132],
+=======
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 };
 
 const account3 = {
   owner: 'Mohammed Kaif Patel',
+<<<<<<< HEAD
   interestRate: 0.7,
   pin: 3333,
   movement: [1,2,3,4,5,-12],
+=======
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 };
 
 const account4 = {
   owner: 'Mohammed Fahad Patel',
+<<<<<<< HEAD
   interestRate: 1,
   pin: 4444,
   movement: [1,2,3,4,5,-12,123323],
@@ -30,6 +49,17 @@ const account5 = {
   interestRate: 1,
   pin: 5555,
   movement: [1,2,3,321324,5,-121232,21],
+=======
+  movements: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+};
+const account5 = {
+  owner: 'Mohammed Azeem Siddique',
+  movements: [460, 1300, 710, 560, 930],
+  interestRate: 1,
+  pin: 5555,
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 };
 
 const conversion = {
@@ -39,12 +69,19 @@ const conversion = {
 }
 
 const account = [account1,account2,account3,account4,account5];
+<<<<<<< HEAD
 let accountFind;
+=======
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 let username = function(accountName){
   let mapAccount = accountName.owner.toLowerCase().split(' ').map(function(initials){
       return initials[0];
   });
+<<<<<<< HEAD
   let usernameOfAccount = mapAccount.join('');
+=======
+ let usernameOfAccount = mapAccount.join('');
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
  accountName.username = usernameOfAccount;
 }
 account.forEach(function(allAccount){
@@ -74,6 +111,7 @@ let withDrawMoney = document.querySelector('.withdraw_money_input');
 let withDrawSubmit = document.querySelector('.form__btn--withdraw');
 let currentBalance = document.querySelector('.amount_have');
 let convertingMoney = document.querySelectorAll('.currency_value');
+<<<<<<< HEAD
 let transferBtn = document.querySelector('.form__btn--transfer');
 let transfer_account = document.querySelector('.transfer_account');
 let amountTransfer = document.querySelector('.amount_transfer');
@@ -84,6 +122,10 @@ let closeAccount = document.querySelector('.form__btn--close');
 let movement;
 
 
+=======
+
+let movement = [];
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 const today = new Date();
 const year = today.getFullYear();
 let month = today.getMonth() + 1;
@@ -121,7 +163,14 @@ let displayAccountInfo = function(movement){
         }
         
         let currenyConvertor = function(valueOfMoneyMovement){
+<<<<<<< HEAD
           convertingMoney.forEach(function(valueOfMoney){
+=======
+          console.log(valueOfMoneyMovement);
+          console.log(convertingMoney);
+          convertingMoney.forEach(function(valueOfMoney){
+            console.log(valueOfMoney);
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
             valueOfMoney.addEventListener('click',function(){
               if(valueOfMoney.value === `inrRiyal`){
                 let riyalMoney = valueOfMoneyMovement.map(element => element * conversion[valueOfMoney.value]).reduce((acc,curr) => acc+curr);
@@ -147,6 +196,7 @@ let displayAccountInfo = function(movement){
             })
           })
         }
+<<<<<<< HEAD
 movement = account.find(acc=>{
   displayAccountInfo(acc.movement);
     currenyConvertor(acc.movement);
@@ -167,6 +217,20 @@ let loanInput = function(){
   requestLoanInput.value = '';  
 }
 
+=======
+
+         
+let loanInput = function(){
+  let requestValue = Number(requestLoanInput.value);
+  if(requestValue > 0){
+    movement.push(requestValue);
+    displayAccountInfo(movement);
+    currenyConvertor(movement);
+  }
+  requestLoanInput.value = '';  
+}
+
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 let withdrawRequest = function(){
   let withdrawValue = Number(withDrawMoney.value);
   if (withdrawValue > 0 && Number(currentBalance.innerHTML.slice(1)) >= withdrawValue) {
@@ -178,6 +242,7 @@ let withdrawRequest = function(){
   else{
     alert(`You Don't have a Sufficient Balance`)
   }
+<<<<<<< HEAD
 }
 let loginUsername = function(){
   movement = account.find(acc=>{
@@ -249,6 +314,8 @@ let signUpNewUser = function(){
 }
 let accountInfo = function(){
   historyButton.classList.toggle("getClass");
+=======
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 }
 
 let transferToTheAccoucnt = function(){
@@ -267,6 +334,7 @@ let transferToTheAccoucnt = function(){
   }
 }
 
+<<<<<<< HEAD
 let confirmUserCloseAccount = function(){
   // console.log(confirmUserName.value);
   // console.log(confirmUserPin.value);
@@ -281,12 +349,65 @@ let confirmUserCloseAccount = function(){
       }
   })
   // console.log(accountFind)
+=======
+let loginUsername = function(){
+  let found = false;
+    for (let i = 0; i < account.length; i++) {
+        const element = account[i];
+        if((element.username === userNameValue.value) && (element.pin == userPinValue.value)){
+            appDisplay.classList.remove('d-none');
+            mainAccountHistory.classList.remove('d-none');
+            signUpWrapper.classList.add('d-none');
+            appDisplay.classList.add('d-block');
+            found = true;
+        }
+      } 
+      if(!found){
+        alert('Please Enter valid Id');
+    } 
+       
+}
+console.log(account.length)
+let signUpNewUser = function(){
+  let fullNameValue = createFullName.value;
+  let createUserNameValue = createUserName.value;
+  let createPinValue = createPin.value;
+  let confirmPinValue = confirmPin.value;
+  if((fullNameValue === '') || (createUserNameValue === '') || (createPinValue === '') || (confirmPinValue === '')){
+    alert("It Cant Be empty");
+  }
+  else if((createPinValue !== confirmPinValue)){
+    alert('Both should be Same');
+  }
+  else{
+    let createUserAccFun = function(newAccount){
+      newAccount = {};
+      newAccount.owner = fullNameValue;
+      newAccount.username = createUserNameValue;
+      newAccount.pin = createPinValue;
+      account.push(newAccount);
+      
+    }
+    createUserAccFun(`account${account.length+1}`);
+    appDisplay.classList.remove('d-none');
+    mainAccountHistory.classList.remove('d-none');
+    signUpWrapper.classList.add('d-none');
+    appDisplay.classList.add('d-block');
+  }
+}
+let accountInfo = function(){
+  historyButton.classList.toggle("getClass");
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
 }
 
+console.log(currentAmount.innerHTML);
 formButtonLoan.addEventListener('click',loanInput);
 loginButton.addEventListener('click',loginUsername);
 signUpButton.addEventListener('click',signUpNewUser);
 accountHistory.addEventListener('click',accountInfo);
 withDrawSubmit.addEventListener('click',withdrawRequest);
+<<<<<<< HEAD
 transferBtn.addEventListener('click',transferToTheAccoucnt);
 closeAccount.addEventListener('click',confirmUserCloseAccount);
+=======
+>>>>>>> 5f4e2a055a05cb8b7959cf6217b01cef776a3510
